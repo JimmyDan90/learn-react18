@@ -4,6 +4,18 @@
 		"source.fixAll.stylelint": true
 	},
 	"stylelint.validate": ["css", "less", "postcss", "scss", "tsx", "html"],
-	"cSpell.words": [],
+	"cSpell.words": [
+		"antd",
+		"breakline",
+		"browserslist",
+		"cnpm",
+		"commitlint",
+		"doclock",
+		"loglevel",
+		"Prefixs",
+		"styl",
+		"stylelint"
+
+  ],
 	"files.eol": "\n"
 }
