@@ -9,7 +9,7 @@ import "./index.scss";
 
 const { Sider, Content } = Layout;
 
-export const LayoutIndex = (props: { name: string }) => {
+const LayoutIndex = (props: { name: string }) => {
 	console.log(props);
 
 	const { pathname } = useLocation();
@@ -35,3 +35,4 @@ export const LayoutIndex = (props: { name: string }) => {
 		</Layout>
 	);
 };
+export default LayoutIndex;

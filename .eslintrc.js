@@ -21,7 +21,7 @@ module.exports = {
       jsx: true
     }
   },
-  plugins: ["react", "@typescript-eslint"],
+  plugins: ["react", "@typescript-eslint", "react-hooks", "prettier"],
   /* 继承某些已有的规则 */
   extends: [
     "eslint:recommended",
@@ -62,6 +62,7 @@ module.exports = {
 
     // react (https://github.com/jsx-eslint/eslint-plugin-react)
     // "react/jsx-uses-vars": "error",
-    "react-hooks/exhaustive-deps": "off"
+    "react-hooks/exhaustive-deps": "off",
+    "react-hooks/rules-of-hooks": "error"
   }
 };

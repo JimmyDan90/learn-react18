@@ -1,7 +1,7 @@
 import { Button, message } from "antd";
 import "./index.scss";
 
-export const Login = () => {
+const Login = () => {
 	return (
 		<Button
 			type="primary"
@@ -13,3 +13,4 @@ export const Login = () => {
 		</Button>
 	);
 };
+export default Login;
