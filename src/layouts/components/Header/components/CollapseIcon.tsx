@@ -1,9 +1,9 @@
-import { MenuUnfoldOutlined } from "@ant-design/icons";
+import { MenuFoldOutlined } from "@ant-design/icons";
 
 export const CollapseIcon = () => {
 	return (
 		<div className="collapsed">
-			<MenuUnfoldOutlined />
+			<MenuFoldOutlined />
 		</div>
 	);
 };
