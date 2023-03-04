@@ -44,7 +44,6 @@ const LayoutMenu = () => {
 		{
 			label: "首页",
 			key: "/home",
-			danger: false,
 			icon: <HomeOutlined />
 		},
 		{
