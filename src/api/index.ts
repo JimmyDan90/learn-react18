@@ -5,10 +5,12 @@ import { ResultData } from "@/api/interface";
 import { ResultEnum } from "@/enums/httpEnum";
 import { checkStatus } from "./helper/checkStatus";
 import { message } from "antd";
-import { useNavigate } from "react-router";
+import { createBrowserHistory } from "history";
+// import { useNavigate } from "react-router";
 // import { store } from "@/redux";
 
 const axiosCanceler = new AxiosCanceler();
+const history = createBrowserHistory();
 
 const config = {
 	// 默认地址
@@ -59,14 +61,14 @@ class RequestHttp {
 		this.service.interceptors.response.use(
 			(response: AxiosResponse) => {
 				const { data, config } = response;
-				const navigate = useNavigate();
+				// const navigate = useNavigate();
 				// * 在请求结束后，移除本次请求(关闭loading)
 				axiosCanceler.removePending(config);
 				tryHideFullScreenLoading();
 				// * 登陆失效（code == 599）
 				if (data.code == ResultEnum.OVERDUE) {
 					message.error(data.msg);
-					navigate("/login");
+					history.push("/login");
 					return Promise.reject(data);
 				}
 				// * 全局错误信息拦截（防止下载文件得时候返回数据流，没有code，直接报错）
@@ -79,12 +81,12 @@ class RequestHttp {
 			},
 			async (error: AxiosError) => {
 				const { response } = error;
-				const navigate = useNavigate();
+				// const navigate = useNavigate();
 				tryHideFullScreenLoading();
 				// 根据响应的错误状态码，做不同的处理
 				if (response) return checkStatus(response.status);
 				// 服务器结果都没有返回(可能服务器错误可能客户端断网) 断网处理:可以跳转到断网页面
-				if (!window.navigator.onLine) return navigate("/500");
+				if (!window.navigator.onLine) return history.push("/500");
 				return Promise.reject(error);
 			}
 		);

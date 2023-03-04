@@ -5,7 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import "./index.scss";
 
 export const LayoutTabs = () => {
-	const { TabPane } = Tabs;
+	// const { TabPane } = Tabs;
 	const { pathname } = useLocation();
 	const [activeValue, setActiveValue] = useState<string>(pathname);
 
@@ -99,21 +99,18 @@ export const LayoutTabs = () => {
 			onEdit={path => {
 				delTabs(path as string);
 			}}
-		>
-			{tabsList.map((item: Menu.MenuOptions) => {
-				return (
-					<TabPane
-						key={item.path}
-						tab={
-							<span>
-								{item.path == "/home" ? <HomeFilled /> : ""}
-								{item.title}
-							</span>
-						}
-						closable={item.path !== "/home"}
-					></TabPane>
-				);
+			items={tabsList.map((item: Menu.MenuOptions) => {
+				return {
+					label: (
+						<span>
+							{item.path == "/home" ? <HomeFilled /> : ""}
+							{item.title}
+						</span>
+					),
+					closable: item.path !== "/home",
+					key: item.path
+				};
 			})}
-		</Tabs>
+		/>
 	);
 };
