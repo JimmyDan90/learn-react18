@@ -1,4 +1,4 @@
 const DataVisualize = () => {
-	return <h1>DataVisualize</h1>;
+	return <span>DataVisualize</span>;
 };
 export default DataVisualize;

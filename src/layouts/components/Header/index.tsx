@@ -1,5 +1,5 @@
 import { Layout } from "antd";
-import { AvatarIcon } from "./components/AvatarIcon";
+import AvatarIcon from "./components/AvatarIcon";
 import { BreadcrumbNav } from "./components/BreadcrumbNav";
 import { CollapseIcon } from "./components/CollapseIcon";
 import "./index.scss";
