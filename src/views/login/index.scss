@@ -10,7 +10,7 @@
 	background-position: 50%;
 	background-size: 100% 100%;
 	background-size: cover;
-	.login-content {
+	.login-box {
 		box-sizing: border-box;
 		display: flex;
 		align-items: center;
@@ -19,7 +19,6 @@
 		height: 94%;
 		padding: 0 4% 0 20px;
 		overflow: hidden;
-		background-color: hsl(0deg 0% 100% / 80%);
 		border-radius: 10px;
 		.login-left {
 			width: 750px;
@@ -55,6 +54,7 @@
 			.ant-input-affix-wrapper {
 				font-size: 14px;
 				color: #b3b6bc;
+				padding: 8.3px 11px;
 			}
 			.ant-input-lg {
 				font-size: 14px;
