@@ -3,23 +3,33 @@ import lazyload from "@/routers/lazyload";
 import { LayoutIndex } from "@/routers/constant";
 import { RouteObject } from "@/routers/interface";
 
-// 首页模块
-const homeRouter: Array<RouteObject> = [
+// 超级表格模块
+const proTableRouter: Array<RouteObject> = [
 	{
-		element: <LayoutIndex />,
+		element: <LayoutIndex title={"超级表格"} />,
 		children: [
 			{
-				path: "/home/index",
-				element: lazyload(React.lazy(() => import("@/views/home/index"))),
+				path: "/proTable/useHooks",
+				element: lazyload(React.lazy(() => import("@/views/proTable/useHooks"))),
 				meta: {
 					keepAlive: true,
 					requiresAuth: true,
-					title: "首页",
-					key: "home"
+					title: "使用 Hooks",
+					key: "useHooks"
+				}
+			},
+			{
+				path: "/proTable/useComponent",
+				element: lazyload(React.lazy(() => import("@/views/proTable/useComponent"))),
+				meta: {
+					keepAlive: true,
+					requiresAuth: true,
+					title: "使用 Component",
+					key: "useComponent"
 				}
 			}
 		]
 	}
 ];
 
-export default homeRouter;
+export default proTableRouter;

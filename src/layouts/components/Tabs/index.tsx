@@ -17,7 +17,7 @@ export const LayoutTabs = () => {
 		},
 		{
 			title: "数据大屏",
-			path: "/dataScreen"
+			path: "/dataScreen/index"
 		},
 		{
 			title: "使用 Hooks",
