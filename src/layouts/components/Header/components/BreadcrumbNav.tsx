@@ -1,6 +1,6 @@
 import { Breadcrumb } from "antd";
 
-export const BreadcrumbNav = () => {
+const BreadcrumbNav = () => {
 	return (
 		<Breadcrumb>
 			<Breadcrumb.Item>Home</Breadcrumb.Item>
@@ -9,3 +9,4 @@ export const BreadcrumbNav = () => {
 		</Breadcrumb>
 	);
 };
+export default BreadcrumbNav;

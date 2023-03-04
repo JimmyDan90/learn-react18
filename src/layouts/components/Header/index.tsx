@@ -1,12 +1,16 @@
 import { Layout } from "antd";
 import AvatarIcon from "./components/AvatarIcon";
-import { BreadcrumbNav } from "./components/BreadcrumbNav";
-import { CollapseIcon } from "./components/CollapseIcon";
+import CollapseIcon from "./components/CollapseIcon";
+import BreadcrumbNav from "./components/BreadcrumbNav";
+import AssemblySize from "./components/AssemblySize";
+import Language from "./components/Language";
+import Theme from "./components/Theme";
+import Fullscreen from "./components/Fullscreen";
 import "./index.scss";
 
 const { Header } = Layout;
 
-export const LayoutHeader = () => {
+const LayoutHeader = () => {
 	return (
 		<Header>
 			<div className="header-lf">
@@ -14,9 +18,14 @@ export const LayoutHeader = () => {
 				<BreadcrumbNav />
 			</div>
 			<div className="header-ri">
+				<AssemblySize />
+				<Language />
+				<Theme />
+				<Fullscreen />
 				<span className="username">Hooks</span>
 				<AvatarIcon />
 			</div>
 		</Header>
 	);
 };
+export default LayoutHeader;
