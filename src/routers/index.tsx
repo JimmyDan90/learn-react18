@@ -19,7 +19,7 @@ const rootRouter: RouteObject[] = [
 		// element: lazyLoad(React.lazy(() => import("@/layouts/index"))),
 		children: [
 			{
-				path: "/home",
+				path: "/home/index",
 				element: lazyload(React.lazy(() => import("@/views/home/index")))
 			},
 			{
@@ -42,6 +42,10 @@ const rootRouter: RouteObject[] = [
 		]
 	},
 	{
+		path: "/404",
+		element: lazyload(React.lazy(() => import("@/components/ErrorMessage/404")))
+	},
+	{
 		path: "/403",
 		element: lazyload(React.lazy(() => import("@/components/ErrorMessage/403")))
 	},
@@ -51,7 +55,7 @@ const rootRouter: RouteObject[] = [
 	},
 	{
 		path: "*",
-		element: lazyload(React.lazy(() => import("@/components/ErrorMessage/404")))
+		element: <Navigate to="/404" />
 	}
 ];
 
