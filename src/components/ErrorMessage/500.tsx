@@ -2,16 +2,16 @@ import { Button, Result } from "antd";
 import { useNavigate } from "react-router";
 import "./index.scss";
 
-const NotFound = () => {
+const NotNetwork = () => {
 	const navigate = useNavigate();
 	const goHome = () => {
 		navigate("/home");
 	};
 	return (
 		<Result
-			status="404"
-			title="404"
-			subTitle="Sorry, the page you visited does not exist."
+			status="500"
+			title="500"
+			subTitle="Sorry, something went wrong."
 			extra={
 				<Button type="primary" onClick={goHome}>
 					Back Home
@@ -21,4 +21,4 @@ const NotFound = () => {
 	);
 };
 
-export default NotFound;
+export default NotNetwork;
