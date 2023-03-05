@@ -13,7 +13,7 @@ const dashboardRouter: Array<RouteObject> = [
 		children: [
 			{
 				path: "/dashboard/dataVisualize",
-				element: lazyload(React.lazy(() => import("@/views/dashboard/dataVisualize"))),
+				element: lazyload(React.lazy(() => import("@/views/dashboard/dataVisualize/index"))),
 				meta: {
 					keepAlive: true,
 					requiresAuth: true,
@@ -23,7 +23,7 @@ const dashboardRouter: Array<RouteObject> = [
 			},
 			{
 				path: "/dashboard/embedded",
-				element: lazyload(React.lazy(() => import("@/views/dashboard/embedded"))),
+				element: lazyload(React.lazy(() => import("@/views/dashboard/embedded/index"))),
 				meta: {
 					keepAlive: true,
 					requiresAuth: true,
