@@ -6,7 +6,6 @@ import { HOME_URL } from "@/config/config";
 import "./index.less";
 
 const LayoutTabs = () => {
-	const { TabPane } = Tabs;
 	const { pathname } = useLocation();
 	const [activeValue, setActiveValue] = useState<string>(pathname);
 	const [tabsList] = useState([
@@ -60,22 +59,18 @@ const LayoutTabs = () => {
 			onEdit={path => {
 				delTabs(path as string);
 			}}
-		>
-			{tabsList.map((item: Menu.MenuOptions) => {
-				return (
-					<TabPane
-						key={item.path}
-						tab={
-							<span>
-								{item.path == HOME_URL ? <HomeFilled /> : ""}
-								{item.title}
-							</span>
-						}
-						closable={item.path !== HOME_URL}
-					></TabPane>
-				);
+			items={tabsList.map((item: Menu.MenuOptions) => {
+				return {
+					label: (
+						<span>
+							{item.path == HOME_URL ? <HomeFilled /> : ""}
+							{item.title}
+						</span>
+					),
+					key: item.path
+				};
 			})}
-		</Tabs>
+		/>
 	);
 };
 

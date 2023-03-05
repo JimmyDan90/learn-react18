@@ -1,10 +1,12 @@
 import Router from "@/routers/index";
 import { HashRouter } from "react-router-dom";
 
-export const App = () => {
+const App = () => {
 	return (
 		<HashRouter>
 			<Router />
 		</HashRouter>
 	);
 };
+
+export default App;
