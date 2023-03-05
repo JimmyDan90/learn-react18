@@ -1,7 +1,13 @@
+import { useEffect } from "react";
+import { connect } from "react-redux";
 import { Table } from "antd";
 import "./index.less";
 
-const UseHooks = () => {
+const UseHooks = (props: any) => {
+	useEffect(() => {
+		console.log(props.authButtons);
+	}, []);
+
 	const dataSource = [
 		{
 			key: "1",
@@ -37,4 +43,5 @@ const UseHooks = () => {
 	return <Table dataSource={dataSource} columns={columns} />;
 };
 
-export default UseHooks;
+const mapStateToProps = (state: any) => state.auth;
+export default connect(mapStateToProps)(UseHooks);
