@@ -1,4 +1,4 @@
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import "@/styles/reset.less";
 import "@/styles/common.less";
 import "@/assets/iconfont/iconfont.less";
@@ -8,15 +8,12 @@ import { Provider } from "react-redux";
 import { store, persistor } from "@/redux";
 import App from "@/App";
 
-ReactDOM.render(
-	// * react严格模式
-	// <React.StrictMode>
-	// * react-redux写法
-	<Provider store={store}>
-		<PersistGate persistor={persistor}>
-			<App />
-		</PersistGate>
-	</Provider>,
-	// </React.StrictMode>,
-	document.getElementById("root")
-);
+const root = document.getElementById("root");
+root &&
+	createRoot(root).render(
+		<Provider store={store}>
+			<PersistGate persistor={persistor}>
+				<App />
+			</PersistGate>
+		</Provider>
+	);

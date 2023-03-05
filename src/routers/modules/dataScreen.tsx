@@ -1,5 +1,5 @@
 import React from "react";
-import lazyload from "@/routers/lazyload";
+import lazyload from "@/routers/util/lazyload";
 import { LayoutIndex } from "@/routers/constant";
 import { RouteObject } from "@/routers/interface";
 
@@ -13,7 +13,7 @@ const dataScreenRouter: Array<RouteObject> = [
 				element: lazyload(React.lazy(() => import("@/views/dataScreen/index"))),
 				meta: {
 					keepAlive: true,
-					requiresAuth: false,
+					requiresAuth: true,
 					title: "数据大屏",
 					key: "dataScreen"
 				}

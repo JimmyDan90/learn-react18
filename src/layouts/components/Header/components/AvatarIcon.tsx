@@ -3,11 +3,13 @@ import { Avatar, Modal, Menu, Dropdown, message } from "antd";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import { HOME_URL } from "@/config/config";
+import { connect } from "react-redux";
+import { setToken } from "@/redux/modules/global/action";
 import PasswordModal from "./PasswordModal";
 import InfoModal from "./InfoModal";
 import avatar from "@/assets/images/avatar.png";
 
-const AvatarIcon = () => {
+const AvatarIcon = (props: any) => {
 	const navigate = useNavigate();
 	interface ModalProps {
 		showModal: (params: { name: number }) => void;
@@ -26,12 +28,14 @@ const AvatarIcon = () => {
 			okText: "确认",
 			cancelText: "取消",
 			onOk: () => {
+				props.setToken("");
 				message.success("退出登录成功！");
 				navigate("/login");
 			}
 		});
 	};
 
+	// Dropdown Menu 内容
 	const menu = (
 		<Menu
 			items={[
@@ -84,4 +88,5 @@ const AvatarIcon = () => {
 	);
 };
 
-export default AvatarIcon;
+const mapDispatchToProps = { setToken };
+export default connect(null, mapDispatchToProps)(AvatarIcon);
