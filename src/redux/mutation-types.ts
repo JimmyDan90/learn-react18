@@ -10,3 +10,5 @@ export const ADD_TABS = "ADD_TABS";
 export const SET_TABS_ACTIVE = "SET_TABS_ACTIVE";
 // 设置 token
 export const SET_TOKEN = "SET_TOKEN";
+// 设置 breadcrumb
+export const SET_BREADCRUMB_LIST = "SET_BREADCRUMB_LIST";

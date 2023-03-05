@@ -100,3 +100,19 @@ export const deepCopy = <T>(obj: any): T => {
 	}
 	return newObj;
 };
+
+/**
+ * @description 双重递归 找出 所有面包屑生成对象存到 redux 中，就不用每次都去递归查找了
+ * @param {String} menuList 当前菜单列表
+ * @returns object
+ */
+export const findAllBreadcrumb = (menuList: Menu.MenuOptions[]): { [key: string]: any } => {
+	let handleBreadcrumbList: any = {};
+	const loop = (menuItem: Menu.MenuOptions) => {
+		// 下面判断代码解释 *** !item?.children?.length   ==>   (item.children && item.children.length > 0)
+		if (menuItem?.children?.length) menuItem.children.forEach(item => loop(item));
+		else handleBreadcrumbList[menuItem.path] = getBreadcrumbList(menuItem.path, menuList);
+	};
+	menuList.forEach(item => loop(item));
+	return handleBreadcrumbList;
+};
