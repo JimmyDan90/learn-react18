@@ -41,7 +41,7 @@ const AvatarIcon = () => {
 							首页
 						</span>
 					),
-					key: "0"
+					key: "1"
 				},
 				{
 					label: (
@@ -49,7 +49,7 @@ const AvatarIcon = () => {
 							个人信息
 						</span>
 					),
-					key: "1"
+					key: "2"
 				},
 				{
 					label: (
@@ -76,7 +76,7 @@ const AvatarIcon = () => {
 	return (
 		<>
 			<Dropdown overlay={menu} placement="bottom" arrow trigger={["click"]}>
-				<Avatar src={avatar} />
+				<Avatar size="large" src={avatar} />
 			</Dropdown>
 			<InfoModal innerRef={infoRef}></InfoModal>
 			<PasswordModal innerRef={passRef}></PasswordModal>

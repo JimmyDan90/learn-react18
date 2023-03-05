@@ -1,15 +1,14 @@
-import { Tabs } from "antd";
+import { Tabs, message } from "antd";
 import { HomeFilled } from "@ant-design/icons";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { HOME_URL } from "@/config/config";
 import "./index.less";
 
-export const LayoutTabs = () => {
-	// const { TabPane } = Tabs;
+const LayoutTabs = () => {
+	const { TabPane } = Tabs;
 	const { pathname } = useLocation();
 	const [activeValue, setActiveValue] = useState<string>(pathname);
-
 	const [tabsList] = useState([
 		{
 			title: "首页",
@@ -49,6 +48,7 @@ export const LayoutTabs = () => {
 
 	const delTabs = (path: string) => {
 		console.log(path);
+		message.success("删除Tabs标签 😆😆😆");
 	};
 
 	return (
@@ -60,18 +60,23 @@ export const LayoutTabs = () => {
 			onEdit={path => {
 				delTabs(path as string);
 			}}
-			items={tabsList.map((item: Menu.MenuOptions) => {
-				return {
-					label: (
-						<span>
-							{item.path === HOME_URL ? <HomeFilled /> : ""}
-							{item.title}
-						</span>
-					),
-					closable: item.path !== HOME_URL,
-					key: item.path
-				};
+		>
+			{tabsList.map((item: Menu.MenuOptions) => {
+				return (
+					<TabPane
+						key={item.path}
+						tab={
+							<span>
+								{item.path == HOME_URL ? <HomeFilled /> : ""}
+								{item.title}
+							</span>
+						}
+						closable={item.path !== HOME_URL}
+					></TabPane>
+				);
 			})}
-		/>
+		</Tabs>
 	);
 };
+
+export default LayoutTabs;

@@ -1,6 +1,7 @@
 import { Breadcrumb } from "antd";
 import { useLocation } from "react-router-dom";
 import { getBreadcrumbList } from "@/utils/util";
+import { HOME_URL } from "@/config/config";
 
 const BreadcrumbNav = () => {
 	const { pathname } = useLocation();
@@ -204,9 +205,9 @@ const BreadcrumbNav = () => {
 
 	return (
 		<Breadcrumb>
-			<Breadcrumb.Item href="#/home/index">首页</Breadcrumb.Item>
+			<Breadcrumb.Item href={`#${HOME_URL}`}>首页</Breadcrumb.Item>
 			{breadcrumbList?.map(item => {
-				return <Breadcrumb.Item key={item}>{item}</Breadcrumb.Item>;
+				return <Breadcrumb.Item key={item}>{item !== "首页" ? item : null}</Breadcrumb.Item>;
 			})}
 		</Breadcrumb>
 	);
