@@ -1,6 +1,6 @@
 import "./index.less";
 
-export const LayoutFooter = () => {
+const LayoutFooter = () => {
 	return (
 		<div className="footer">
 			<a href="http://www.spicyboy.cn/" target="_blank" rel="noreferrer">
@@ -9,3 +9,4 @@ export const LayoutFooter = () => {
 		</div>
 	);
 };
+export default LayoutFooter;

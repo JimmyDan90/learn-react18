@@ -7,7 +7,7 @@ import { checkStatus } from "./helper/checkStatus";
 import { message } from "antd";
 import { createBrowserHistory } from "history";
 // import { useNavigate } from "react-router";
-// import { store } from "@/redux";
+import { store } from "@/redux";
 
 const axiosCanceler = new AxiosCanceler();
 const history = createBrowserHistory();
@@ -38,13 +38,12 @@ class RequestHttp {
 				axiosCanceler.addPending(config);
 				// * 如果当前请求不需要显示 loading,在api服务中通过指定的第三个参数: { headers: { noLoading: true } }来控制不显示loading，参见loginApi
 				config.headers!.noLoading || showFullScreenLoading();
-				// const token: string = store.getState().global.token;
-				const token: string = "123456";
+				const token: string = store.getState().global.token;
 				return {
 					...config,
 					headers: {
 						...config.headers,
-						Authorization: token
+						"x-access-token": token
 					}
 				};
 			},
