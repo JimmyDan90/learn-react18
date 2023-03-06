@@ -9,7 +9,7 @@ const dataScreen = () => {
 	};
 	return (
 		<Button type="primary" onClick={requestMenuList}>
-			发起网络请求
+			点我发起网络请求 😎
 		</Button>
 	);
 };
