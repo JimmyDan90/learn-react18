@@ -1,6 +1,5 @@
 import { useEffect } from "react";
-import { Outlet, useLocation } from "react-router-dom";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { Outlet } from "react-router-dom";
 import { Layout } from "antd";
 import { setAuthButtons } from "@/redux/modules/auth/action";
 import { updateCollapse } from "@/redux/modules/menu/action";
@@ -14,12 +13,12 @@ import "./index.less";
 
 const LayoutIndex = (props: any) => {
 	const { Sider, Content } = Layout;
-	const { pathname } = useLocation();
+	const { isCollapse, updateCollapse, setAuthButtons } = props;
 
 	// 获取按钮权限列表
-	const getAuthButtonsData = async () => {
+	const getAuthButtonsList = async () => {
 		const { data } = await getAuthorButtons();
-		props.setAuthButtons(data);
+		setAuthButtons(data);
 	};
 
 	// 监听窗口大小变化
@@ -27,15 +26,15 @@ const LayoutIndex = (props: any) => {
 		window.onresize = () => {
 			return (() => {
 				let screenWidth = document.body.clientWidth;
-				if (props.isCollapse === false && screenWidth < 1200) props.updateCollapse(true);
-				if (props.isCollapse === false && screenWidth > 1200) props.updateCollapse(false);
+				if (!isCollapse && screenWidth < 1200) updateCollapse(true);
+				if (!isCollapse && screenWidth > 1200) updateCollapse(false);
 			})();
 		};
 	};
 
 	useEffect(() => {
 		listeningWindow();
-		getAuthButtonsData();
+		getAuthButtonsList();
 	}, []);
 
 	return (
@@ -48,13 +47,13 @@ const LayoutIndex = (props: any) => {
 				<LayoutHeader></LayoutHeader>
 				<LayoutTabs></LayoutTabs>
 				<Content>
-					{/* TransitionGroup 会导致 useEffect 加载两次，后期在解决 */}
-					<TransitionGroup className="content">
-						{/* exit：表示退出当前页面的时候是否有动画 */}
-						<CSSTransition key={pathname} timeout={200} classNames="fade" exit={false}>
-							<Outlet></Outlet>
-						</CSSTransition>
-					</TransitionGroup>
+					{/* TransitionGroup 会导致 useEffect 加载两次 && 使用路由懒加载第一次进入没有动画，所以暂时不用过渡动画了 */}
+					{/* <TransitionGroup className="content"> */}
+					{/* exit：表示退出当前页面的时候是否有动画 */}
+					{/* <CSSTransition key={pathname} timeout={200} classNames="fade" exit={false}> */}
+					<Outlet></Outlet>
+					{/* </CSSTransition> */}
+					{/* </TransitionGroup> */}
 				</Content>
 				<LayoutFooter></LayoutFooter>
 			</Layout>
@@ -62,8 +61,6 @@ const LayoutIndex = (props: any) => {
 	);
 };
 
-// * react-redux写法(高阶组件)
-// * connect具有两个参数，第一个参数是mapStateToProps，第二个参数是mapDispatchToProps
 const mapStateToProps = (state: any) => state.menu;
 const mapDispatchToProps = { setAuthButtons, updateCollapse };
 export default connect(mapStateToProps, mapDispatchToProps)(LayoutIndex);
