@@ -23,6 +23,7 @@ export const rootRouter: RouteObject[] = [
 		path: "/login",
 		element: <Login />,
 		meta: {
+			requiresAuth: false,
 			title: "登录页",
 			key: "login"
 		}

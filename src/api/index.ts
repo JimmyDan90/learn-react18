@@ -6,6 +6,7 @@ import { ResultData } from "@/api/interface";
 import { ResultEnum } from "@/enums/httpEnum";
 import { checkStatus } from "./helper/checkStatus";
 import { message } from "antd";
+import { setToken } from "@/redux/modules/global/action";
 import { createBrowserHistory } from "history";
 // import { useNavigate } from "react-router";
 import { store } from "@/redux";
@@ -69,6 +70,7 @@ class RequestHttp {
 				tryHideFullScreenLoading();
 				// * 登陆失效（code == 599）
 				if (data.code == ResultEnum.OVERDUE) {
+					store.dispatch(setToken(""));
 					message.error(data.msg);
 					history.push("/login");
 					return Promise.reject(data);
