@@ -23,3 +23,9 @@ export const setWeakOrGray = (weakOrGray: string) => ({
 	type: types.SET_WEAK_OR_GRAY,
 	weakOrGray
 });
+
+// * setDark
+export const setDark = (isDark: boolean) => ({
+	type: types.SET_DARK,
+	isDark
+});

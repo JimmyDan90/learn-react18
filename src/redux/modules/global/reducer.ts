@@ -34,6 +34,9 @@ const global = (state: GlobalState = globalState, action: AnyAction) =>
 			case types.SET_WEAK_OR_GRAY:
 				draftState.themeConfig.weakOrGray = action.weakOrGray;
 				break;
+			case types.SET_DARK:
+				draftState.themeConfig.isDark = action.isDark;
+				break;
 			default:
 				return draftState;
 		}

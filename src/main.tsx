@@ -1,7 +1,7 @@
 import { createRoot } from "react-dom/client";
 import "@/styles/reset.less";
 import "@/assets/iconfont/iconfont.less";
-import "antd/dist/antd.css";
+import "antd/dist/antd.less";
 import "@/language/index";
 import "@/styles/common.less";
 import { PersistGate } from "redux-persist/integration/react";

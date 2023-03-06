@@ -22,6 +22,7 @@ export default defineConfig((mode: ConfigEnv): UserConfig => {
 		css: {
 			preprocessorOptions: {
 				less: {
+					javascriptEnabled: true,
 					additionalData: `@import "@/styles/var.less";`
 				}
 			}
