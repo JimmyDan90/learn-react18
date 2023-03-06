@@ -1,6 +1,47 @@
 import { RouteObject } from "@/routers/interface";
 
 /**
+ * @description 获取localStorage
+ * @param {String} key Storage名称
+ * @return string
+ */
+export const localGet = (key: string) => {
+	const value = window.localStorage.getItem(key);
+	try {
+		return JSON.parse(window.localStorage.getItem(key) as string);
+	} catch (error) {
+		return value;
+	}
+};
+
+/**
+ * @description 存储localStorage
+ * @param {String} key Storage名称
+ * @param {Any} value Storage值
+ * @return void
+ */
+export const localSet = (key: string, value: any) => {
+	window.localStorage.setItem(key, JSON.stringify(value));
+};
+
+/**
+ * @description 清除localStorage
+ * @param {String} key Storage名称
+ * @return void
+ */
+export const localRemove = (key: string) => {
+	window.localStorage.removeItem(key);
+};
+
+/**
+ * @description 清除所有localStorage
+ * @return void
+ */
+export const localClear = () => {
+	window.localStorage.clear();
+};
+
+/**
  * @description 获取需要展开的 subMenu
  * @param {String} path 当前访问地址
  * @returns array
@@ -15,20 +56,6 @@ export const getOpenKeys = (path: string) => {
 	}
 	return newArr;
 };
-
-/**
- * @description 使用递归处理路由菜单，生成一维数组，做菜单权限判断
- * @param {Array} menuList 所有菜单列表
- * @param {Array} newArr 菜单的一维数组
- * @return array
- */
-export function handleRouter(routerList: Menu.MenuOptions[], newArr: string[] = []) {
-	routerList.forEach((item: Menu.MenuOptions) => {
-		typeof item === "object" && item.path && newArr.push(item.path);
-		item.children && item.children.length && handleRouter(item.children, newArr);
-	});
-	return newArr;
-}
 
 /**
  * @description 递归查询对应的路由
@@ -49,7 +76,7 @@ export const searchRoute = (path: string, routes: RouteObject[] = []): RouteObje
 };
 
 /**
- * @description 递归当前路由的所有关联路由，生成面包屑导航栏
+ * @description 递归当前路由的 所有 关联的路由，生成面包屑导航栏
  * @param {String} path 当前访问地址
  * @param {Array} menuList 菜单列表
  * @returns array
@@ -83,6 +110,36 @@ export const getBreadcrumbList = (path: string, menuList: Menu.MenuOptions[]) =>
 };
 
 /**
+ * @description 双重递归 找出 所有面包屑生成对象存到 redux 中，就不用每次都去递归查找了
+ * @param {String} menuList 当前菜单列表
+ * @returns object
+ */
+export const findAllBreadcrumb = (menuList: Menu.MenuOptions[]): { [key: string]: any } => {
+	let handleBreadcrumbList: any = {};
+	const loop = (menuItem: Menu.MenuOptions) => {
+		// 下面判断代码解释 *** !item?.children?.length   ==>   (item.children && item.children.length > 0)
+		if (menuItem?.children?.length) menuItem.children.forEach(item => loop(item));
+		else handleBreadcrumbList[menuItem.path] = getBreadcrumbList(menuItem.path, menuList);
+	};
+	menuList.forEach(item => loop(item));
+	return handleBreadcrumbList;
+};
+
+/**
+ * @description 使用递归处理路由菜单，生成一维数组，做菜单权限判断
+ * @param {Array} menuList 所有菜单列表
+ * @param {Array} newArr 菜单的一维数组
+ * @return array
+ */
+export function handleRouter(routerList: Menu.MenuOptions[], newArr: string[] = []) {
+	routerList.forEach((item: Menu.MenuOptions) => {
+		typeof item === "object" && item.path && newArr.push(item.path);
+		item.children && item.children.length && handleRouter(item.children, newArr);
+	});
+	return newArr;
+}
+
+/**
  * @description 判断数据类型
  * @param {Any} val 需要判断类型的数据
  * @return string
@@ -113,20 +170,4 @@ export const deepCopy = <T>(obj: any): T => {
 		}
 	}
 	return newObj;
-};
-
-/**
- * @description 双重递归 找出 所有面包屑生成对象存到 redux 中，就不用每次都去递归查找了
- * @param {String} menuList 当前菜单列表
- * @returns object
- */
-export const findAllBreadcrumb = (menuList: Menu.MenuOptions[]): { [key: string]: any } => {
-	let handleBreadcrumbList: any = {};
-	const loop = (menuItem: Menu.MenuOptions) => {
-		// 下面判断代码解释 *** !item?.children?.length   ==>   (item.children && item.children.length > 0)
-		if (menuItem?.children?.length) menuItem.children.forEach(item => loop(item));
-		else handleBreadcrumbList[menuItem.path] = getBreadcrumbList(menuItem.path, menuList);
-	};
-	menuList.forEach(item => loop(item));
-	return handleBreadcrumbList;
 };
