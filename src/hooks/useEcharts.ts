@@ -1,5 +1,5 @@
 import * as echarts from "echarts";
-import { useCallback, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 /**
  * @description 使用Echarts(只是为了添加图表响应式)
  * @param {Element} myChart Echarts实例(必传)
@@ -9,11 +9,11 @@ import { useCallback, useEffect, useRef } from "react";
 export const useEcharts = (myChart: echarts.ECharts, options: echarts.EChartsCoreOption) => {
 	const ref = useRef<echarts.ECharts>();
 
-	const resize = useCallback(() => {
-		if (ref.current) {
-			ref.current.resize();
-		}
-	}, []);
+	// const resize = useCallback(() => {
+	// 	if (ref.current) {
+	// 		ref.current.resize();
+	// 	}
+	// }, []);
 
 	useEffect(() => {
 		// ref.current = echarts.init();
