@@ -1,6 +1,6 @@
 import { useEcharts } from "@/hooks/useEcharts";
 import { EChartsOption } from "echarts";
-import "./AnnuaUIse.less";
+import "./AnnuaUIseChart.less";
 interface ChartProp {
 	label: string;
 	value: string[];

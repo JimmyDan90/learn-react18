@@ -54,6 +54,7 @@ const LayoutTabs = (props: any) => {
 	return (
 		<div className="tabs">
 			<Tabs
+				animated
 				activeKey={activeValue}
 				onChange={clickTabs}
 				hideAdd
