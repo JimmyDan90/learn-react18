@@ -111,3 +111,11 @@ learn-react18
 ├─ tsconfig.json          # typescript 全局配置
 └─ vite.config.ts         # vite 配置
 ```
+
+### 项目截图
+
+![image](https://github.com/JimmyDan90/learn-react18/blob/main/src/screenshot/%E6%88%AA%E5%B1%8F2023-03-07%20%E4%B8%8B%E5%8D%883.43.06.png?raw=true)
+![image](https://github.com/JimmyDan90/learn-react18/blob/main/src/screenshot/%E6%88%AA%E5%B1%8F2023-03-07%20%E4%B8%8B%E5%8D%883.43.42.png?raw=true)
+![image](https://github.com/JimmyDan90/learn-react18/blob/main/src/screenshot/%E6%88%AA%E5%B1%8F2023-03-07%20%E4%B8%8B%E5%8D%883.43.56.png?raw=true)
+![image](https://github.com/JimmyDan90/learn-react18/blob/main/src/screenshot/%E6%88%AA%E5%B1%8F2023-03-07%20%E4%B8%8B%E5%8D%883.44.29.png?raw=true)
+![image](https://github.com/JimmyDan90/learn-react18/blob/main/src/screenshot/%E6%88%AA%E5%B1%8F2023-03-07%20%E4%B8%8B%E5%8D%883.44.44.png?raw=true)
