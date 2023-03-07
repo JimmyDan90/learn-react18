@@ -1,16 +1,18 @@
-import { Drawer, Divider, Switch, message } from "antd";
+import { Drawer, Divider, Switch } from "antd";
 import { useState } from "react";
 import { connect } from "react-redux";
 import { FireOutlined } from "@ant-design/icons";
 import { setWeakOrGray } from "@/redux/modules/global/action";
+import SwitchDark from "@/components/SwitchDark";
 
 const Theme = (props: any) => {
 	const [visible, setVisible] = useState<boolean>(false);
+	const { setWeakOrGray } = props;
 	const { weakOrGray } = props.themeConfig;
 
 	const onChange = (checked: boolean, theme: string) => {
-		if (checked) return props.setWeakOrGray(theme);
-		props.setWeakOrGray("");
+		if (checked) return setWeakOrGray(theme);
+		setWeakOrGray("");
 	};
 
 	return (
@@ -35,14 +37,8 @@ const Theme = (props: any) => {
 					全局主题
 				</Divider>
 				<div className="theme-item">
-					<span>暗黑模式（未完成）</span>
-					<Switch
-						checkedChildren={<>🌞</>}
-						unCheckedChildren={<>🌜</>}
-						onChange={() => {
-							message.success("暗黑模式 ✨");
-						}}
-					/>
+					<span>暗黑模式</span>
+					<SwitchDark />
 				</div>
 				<div className="theme-item">
 					<span>灰色模式</span>

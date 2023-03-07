@@ -1,5 +1,9 @@
 const Menu1 = () => {
-	return <span>Menu1</span>;
+	return (
+		<div className="card content-box">
+			<span className="text">Menu1 🍓🍇🍈🍉</span>
+		</div>
+	);
 };
 
 export default Menu1;
